@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 /*
 目標とポイント
 再帰プログラムは自分自身を繰り返し呼び出し、そのたびに異なる引数を渡していく。
@@ -14,5 +16,32 @@ package main
 アルゴリズムの中には再帰的にコードを記述する事によって効果的な処理をできるものがある
 */
 
+// factorial 階乗の計算
+// n * (n-1) * (n-2) * ... 2 * 1
+func factorial(n uint) uint {
+	var i uint
+	for i = 0; i < n; i++ {
+		fmt.Printf(" ")
+	}
+	fmt.Printf("Called 'factorial(%d)' (winding) \n", n)
+
+	if n == 0 {
+		// 再帰関数の終了条件 0! = 1
+		return 1
+	}
+
+	v := n * factorial(n-1)
+
+	for i = 0; i < n; i++ {
+		fmt.Printf(" ")
+	}
+	fmt.Printf("Returning 'factorial(%d)=%d (unwinding)' \n", n, v)
+
+	return v
+}
+
 func main() {
+	var n uint = 5
+	v := factorial(n)
+	fmt.Printf("Factorial of %d is %d", n, v)
 }
